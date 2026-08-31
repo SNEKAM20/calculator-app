@@ -1,112 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nithilam.Tech - Engineering Excellence</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nithilam.Tech — Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">
-    <span class="toast-icon">🚀</span>
-    <span id="toastMessage">Deployed Version 1.0.1 to production!</span>
+  <div class="page">
+
+    <!-- LEFT HALF: brand panel -->
+    <section class="brand-panel">
+      <img src="logo2.jpeg" alt="" class="brand-bg">
+      <div class="brand-overlay"></div>
+
+      <img src="logo.png" alt="Nithilam.Tech logo" class="brand-mark">
+
+      <div class="brand-text">
+        <h1>NITHILAM.TECH</h1>
+        <p>Engineering excellence</p>
+      </div>
+    </section>
+
+    <!-- RIGHT HALF: calculator -->
+    <section class="calc-panel">
+      <div class="card" id="calcCard">
+        <img src="logo.png" alt="" class="card-logo">
+        <h2>Nithilam.Tech</h2>
+        <span class="badge" id="versionBadge">Production (Version 1.0)</span>
+
+        <div class="field">
+          <input type="text" id="inputA" placeholder="Enter first integer" inputmode="numeric">
+        </div>
+        <div class="field">
+          <input type="text" id="inputB" placeholder="Enter second integer" inputmode="numeric">
+        </div>
+
+        <div class="action-row">
+          <button class="add-btn" id="addBtn">
+            <span>Add</span>
+          </button>
+
+          <button class="check-btn standalone" id="checkBtn">
+            <span>Check</span>
+          </button>
+        </div>
+
+        <div class="result" id="result"></div>
+      </div>
+    </section>
   </div>
 
-  <div class="main-wrapper">
+  <!-- GIT GRAPH SECTION -->
+  <section class="graph-section" id="graphSection">
+    <div class="graph-inner">
+      <h3>How the fix reached production and dev</h3>
+      <p>A hotfix branch cut from <span class="mono">main</span> carried the negative-integer fix into production, then merged into <span class="mono">dev</span> so the in-progress work there didn't miss it.</p>
 
-    <!-- Left Half: Nithilam.Tech Brand & Overview -->
-    <div class="brand-showcase">
-      <div class="brand-header">
-        <img src="logo2.jpeg" alt="Nithilam Tech Logo" class="showcase-logo">
-        <h1 class="main-heading">Nithilam.Tech</h1>
-        <p class="tagline">Engineering Excellence & Intelligent Digital Solutions</p>
+      <div class="legend">
+        <span class="legend-item"><i style="background:#2563eb"></i>main</span>
+        <span class="legend-item"><i style="background:#f59e0b"></i>bugfix/negative-integers</span>
+        <span class="legend-item"><i style="background:#8b5cf6"></i>dev</span>
       </div>
 
-      <div class="about-content">
-        <p>
-          At <strong>Nithilam.Tech</strong>, we specialize in modern software engineering, intelligent systems architecture, and robust technological transformations. We deliver reliable, scalable, and high-performance digital products designed to solve real-world industry challenges.
-        </p>
-
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h3>⚡ Core Capabilities</h3>
-            <p>Scalable cloud applications, responsive front-end design, and optimized embedded intelligence.</p>
-          </div>
-          <div class="feature-card">
-            <h3>🛡️ Quality Assurance</h3>
-            <p>Continuous integration, systematic hotfixing, and secure production deployment pipelines.</p>
-          </div>
-        </div>
+      <div class="graph-card">
+        <svg id="graphSvg" viewBox="0 0 660 300" width="660" height="300" xmlns="http://www.w3.org/2000/svg"></svg>
       </div>
     </div>
-
-    <!-- Right Half: Interactive Calculator Box -->
-    <div class="calculator-container">
-      <div class="card flowy-entry">
-        
-        <div class="calc-top-header">
-          <span class="badge-bar badge-v1" id="versionBadge">Production (Version 1.0)</span>
-        </div>
-
-        <!-- Live Version Switcher Toggle -->
-        <div class="toggle-container">
-          <span class="toggle-label">Version 1.0 (Buggy)</span>
-          <label class="switch">
-            <input type="checkbox" id="versionToggle">
-            <span class="slider"></span>
-          </label>
-          <span class="toggle-label">Version 1.0.1 (Fixed)</span>
-        </div>
-
-        <div class="input-group">
-          <input type="number" id="num1" placeholder="Enter first integer">
-          <input type="number" id="num2" placeholder="Enter second integer">
-        </div>
-
-        <button class="action-btn" id="calculateBtn">Add</button>
-
-        <!-- Dynamic Output Section -->
-        <div class="output-section" id="outputSection">
-          <div class="output-row">
-            <strong>Answer: </strong><span id="answerText">--</span>
-          </div>
-          <div class="output-row">
-            <strong>Check: </strong><span id="checkText">--</span>
-          </div>
-
-          <!-- Hotfix Button -->
-          <div class="update-box" id="updateBox">
-            <button class="update-btn" id="updateBtn">⚡ Apply Hotfix / Deploy Version 1.0.1</button>
-          </div>
-        </div>
-
-        <!-- Live Code Diff Card -->
-        <div class="diff-card" id="diffCard">
-          <div class="diff-header">Changelog & Code Diff</div>
-          <div class="diff-body">
-            <pre><span class="diff-del">- if (n1 &lt; 0 || n2 &lt; 0) return Error("Negative not allowed");</span>
-<span class="diff-add">+ const sum = n1 + n2; // Negative integers supported</span></pre>
-          </div>
-        </div>
-
-        <!-- Animated Git Workflow Pipeline -->
-        <div class="git-pipeline">
-          <div class="pipeline-title">Git Branch Pipeline</div>
-          <div class="pipeline-flow">
-            <div class="node active" id="nodeMain">main (v1.0)</div>
-            <div class="line" id="line1"></div>
-            <div class="node" id="nodeBugfix">bugfix/negative-integers</div>
-            <div class="line" id="line2"></div>
-            <div class="node" id="nodeDev">dev (synced)</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
