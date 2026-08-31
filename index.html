@@ -3,48 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nithilam.Tech - Final Calculator</title>
-  <!-- Link to the clean external stylesheet -->
+  <title>Nithilam.Tech - Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Main Card Container with entry animation -->
   <div class="card">
     <div class="logo-container">
       <img src="logo.png" alt="Nithilam Tech Logo" class="logo-img">
       <h1 class="brand-title">Nithilam.Tech</h1>
-      <!-- Version badge changes dynamically when updated -->
-      <span class="badge-bar" id="versionBadge">Live Application (v1.1)</span>
+      <span class="badge-bar" id="versionBadge">Production (Version 1.0)</span>
     </div>
 
-    <!-- Input fields for integer entry -->
     <div class="input-group">
       <input type="number" id="num1" placeholder="Enter first integer">
       <input type="number" id="num2" placeholder="Enter second integer">
     </div>
 
-    <!-- Button group featuring both Add and Subtract operations -->
-    <div class="button-row">
-      <button class="action-btn add-btn" id="addBtn">Add</button>
-      <button class="action-btn sub-btn" id="subBtn">Subtract</button>
-    </div>
+    <button class="action-btn" id="calculateBtn">Add</button>
 
-    <!-- The output section which expands dynamically with smooth motion -->
     <div class="output-section" id="outputSection">
-      <div class="output-row">
-        <strong>Operation: </strong><span id="operationText">--</span>
-      </div>
       <div class="output-row">
         <strong>Answer: </strong><span id="answerText">--</span>
       </div>
       <div class="output-row">
         <strong>Check: </strong><span id="checkText">--</span>
       </div>
+
+      <div class="update-box" id="updateBox">
+        <button class="update-btn" id="updateBtn">Update to Version 1.0.1 (Fix Negative Integers)</button>
+      </div>
     </div>
   </div>
 
-  <!-- Link to the interactive script logic -->
   <script src="script.js"></script>
 </body>
 </html>
