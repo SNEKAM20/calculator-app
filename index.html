@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator Application - Production</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f6f8; }
+    .calculator-card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 320px; }
+    h2 { margin-top: 0; text-align: center; color: #333; }
+    .badge { display: block; text-align: center; margin-bottom: 1rem; font-weight: bold; color: #007bff; }
+    input { width: 100%; padding: 10px; margin-bottom: 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+    .button-group { display: flex; gap: 8px; margin-bottom: 12px; }
+    button { flex: 1; padding: 10px; border: none; border-radius: 4px; background-color: #28a745; color: white; cursor: pointer; font-size: 1rem; }
+    button:hover { background-color: #218838; }
+    .result { font-weight: bold; text-align: center; margin-top: 10px; font-size: 1.1rem; color: #222; }
+    .error { color: #dc3545; }
+  </style>
+</head>
+<body>
+  <div class="calculator-card">
+    <h2>Calculator</h2>
+    <span class="badge">PROD (Production)</span>
+    <input type="number" id="num1" placeholder="Number 1">
+    <input type="number" id="num2" placeholder="Number 2">
+    <div class="button-group">
+      <button id="addBtn">Add</button>
+    </div>
+    <div class="result" id="result">Result: --</div>
+  </div>
+
+  <script>
+    document.getElementById("addBtn").addEventListener("click", function () {
+      const val1 = document.getElementById("num1").value.trim();
+      const val2 = document.getElementById("num2").value.trim();
+      const resultElement = document.getElementById("result");
+
+      if (val1 === "" || val2 === "") {
+        resultElement.innerText = "Please enter both numbers.";
+        resultElement.className = "result error";
+        return;
+      }
+
+      const num1 = parseInt(val1, 10);
+      const num2 = parseInt(val2, 10);
+
+      // Phase 1: Only supports positive integers
+      if (num1 <= 0 || num2 <= 0) {
+        resultElement.innerText = "Error: Only positive integers allowed!";
+        resultElement.className = "result error";
+        return;
+      }
+
+      const sum = num1 + num2;
+      resultElement.innerText = `Result: ${num1} + ${num2} = ${sum}`;
+      resultElement.className = "result";
+    });
+  </script>
+</body>
+</html>
